@@ -34,6 +34,7 @@
   .secondary{border:1px solid #d4dbd0;background:#f7f9f5;color:var(--green);font-weight:700;border-radius:12px;min-height:52px;padding:8px 14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:18px}
   .danger{color:#9b381d;border-color:#e8c1b3;background:#fff7f4}
   .avatar{height:48px;width:48px;border-radius:50%;background:#fff0df;color:#a34322;display:grid;place-items:center;font-weight:800;font-size:20px;flex:none}
+  .avatar.two{font-size:16px;letter-spacing:-.04em}
   .badge{position:absolute;top:14px;left:14px;background:#fffdf7;color:#5e4225;padding:5px 12px;border-radius:50px;font-weight:700;box-shadow:0 2px 8px #273a1d16;font-size:17px}
   .muted{color:var(--muted)}
   .demo-bar{background:#293932;color:#fff;font-size:15px;text-align:center;padding:6px 10px}
@@ -83,6 +84,29 @@
   .stickers .row i:nth-child(3n+2){transform:rotate(-8deg)} .stickers .row i:nth-child(3n){transform:rotate(6deg)}
   .stickers p{font-size:17px;color:#634927;line-height:1.5}
   .post{background:#fff;border-radius:20px;padding:16px;margin-top:12px;box-shadow:0 2px 10px #6a4a2a0f;position:relative}
+  button.post{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;color:inherit;border:0;cursor:pointer}
+  .post.env{border:1px solid #ecd9c2;background:linear-gradient(160deg,#fffdf8 0%,#fbefe0 100%);min-height:100px;padding:14px;overflow:hidden;box-shadow:0 4px 16px #8b381f1f}
+  .post.env::before{content:"";position:absolute;left:0;right:0;top:0;height:46px;background:linear-gradient(to bottom right,transparent 49%,#efdcc4 50%,transparent 52%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 49%,#efdcc4 50%,transparent 52%) right/50% 100% no-repeat}
+  .post.env .seal-l{width:60px;height:60px;flex:none;background:url(images/wax_seal.webp) center/contain no-repeat;transform:rotate(-8deg);position:relative}
+  .post .t{flex:1;min-width:0;position:relative;display:flex;flex-direction:column}
+  .post.env b{font-size:21px;line-height:1.4} .post .d{font-size:16px;color:var(--muted)}
+  .new-tag{align-self:flex-start;background:var(--accent);color:#fff;font-size:15px;font-weight:700;border-radius:999px;padding:1px 10px;margin-bottom:2px}
+  .post .go{font-weight:700;color:var(--accent);white-space:nowrap;position:relative;font-size:17px}
+  .post.closed{padding:12px 14px;min-height:76px;background:#fff}
+  .sub-page .post.closed{border:1px solid var(--line)}
+  .post.closed .row1{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap} .post.closed .row1 b{font-size:19px}
+  .post.closed .pv{color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:18px}
+  .post.closed .row2{display:flex;gap:10px;align-items:center;margin-top:2px;flex-wrap:wrap}
+  .read-tag,.post .mini{display:inline-flex;align-items:center;gap:4px;font-size:15px;color:#7d8a82}
+  .read-tag{background:#f1f3ef;border-radius:999px;padding:1px 8px}
+  .post.closed .go{color:var(--green);font-weight:700}
+  .date-box{width:56px;height:56px;border-radius:14px;background:var(--cream);color:var(--accent-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1.1;font-weight:800}
+  .date-box small{font-size:14px;font-weight:700} .date-box b{font-size:22px}
+  .item-open{margin-top:12px}
+  .item-open .close-post{margin-top:10px}
+  .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+  .thumbs .photo{aspect-ratio:1;border-radius:10px}
+  .close-post{display:block;margin:8px 0 0 auto;min-height:48px;padding:6px 16px;border-radius:12px;border:1px solid #d4dbd0;background:#f7f9f5;color:var(--green);font-weight:700}
   .post.is-new{box-shadow:0 0 0 2px #ecc9ad,0 4px 14px #8b381f1f}
   .new-seal{position:absolute;top:-12px;right:12px;display:flex;align-items:center;gap:4px;pointer-events:none}
   .new-seal i{width:40px;height:40px;background:url(images/wax_seal.webp) center/contain no-repeat;transform:rotate(10deg);display:block}
@@ -138,6 +162,7 @@
   .meeting .k{font-weight:800;font-size:19px;display:flex;gap:6px;align-items:center}
   .meeting .when{font-size:20px;font-weight:800;margin-top:8px;color:var(--accent-dark)}
   .meeting .place{font-size:23px;font-weight:800;line-height:1.45}
+  .meet-map{width:100%;margin-top:12px;min-height:58px;background:#fff;font-size:18px}
   .meeting p.note{color:#5e5a4c;font-size:18px;margin-top:6px}
   .day{margin-bottom:22px}
   .day h4{font-size:20px;display:flex;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #e8ece5}
@@ -178,6 +203,36 @@
   .food-grid figure{margin:0;background:#fff;border-radius:14px;text-align:center;padding:10px 5px 14px}
   .food-grid .illu{width:100%;height:104px}
   .food-grid span{display:block;font-size:16px;color:var(--muted)} .food-grid strong{display:block;font-size:19px}
+  /* 風景と、土地の味。＝旅雑誌の特集ページ */
+  .mag{margin:34px -18px 10px;background:var(--paper);padding:26px 22px 22px;border-top:3px solid var(--ink);border-bottom:1px solid #e2d3bf}
+  .mag-kicker{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--accent-dark);letter-spacing:.08em}
+  .mag-kicker span{background:var(--ink);color:#fff;padding:2px 10px;letter-spacing:.2em}
+  .mag-title{font-size:36px;font-weight:900;line-height:1.3;margin:14px 0 10px;letter-spacing:.04em}
+  .mag-lead{font-size:18px;color:#45564b;line-height:1.8;padding-bottom:18px;border-bottom:1px solid #e2d3bf}
+  .mag article{padding:24px 0;border-bottom:1px solid #e2d3bf}
+  .mag article:last-of-type{border-bottom:0}
+  .mg-no{font-size:30px;font-weight:900;color:var(--accent);line-height:1;letter-spacing:.04em}
+  .mg-label{display:inline-block;font-size:15px;font-weight:700;color:var(--green);border:1px solid var(--green);border-radius:999px;padding:1px 10px;margin-bottom:8px}
+  .mg-h{font-size:24px;font-weight:900;line-height:1.45;margin:8px 0 8px}
+  .mg-text{font-size:18px;line-height:1.95;color:#3a4741}
+  .mg-photo figure{margin:0 -22px 14px}
+  .mg-cap{font-size:15px;color:#7d8a82;margin:6px 22px 0;text-align:right}
+  .mg-route{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:16px;padding:18px 16px!important;margin:20px 0;border-bottom:0!important;box-shadow:0 2px 12px #6a4a2a12}
+  .mg-route-ill{display:flex;flex-direction:column;align-items:center;flex:none}
+  .mg-dash{width:2px;height:40px;margin-top:4px;background:repeating-linear-gradient(to bottom,var(--accent) 0 6px,transparent 6px 12px)}
+  .mg-food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 12px}
+  .mg-food-grid figure{margin:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px #6a4a2a14}
+  .mg-food-grid figcaption{display:flex;align-items:center;gap:6px;padding:8px 10px 10px}
+  .mg-food-grid figcaption small{display:block;font-size:14px;color:var(--muted);letter-spacing:.1em;line-height:1.3} .mg-food-grid figcaption b{display:block;font-size:19px;line-height:1.35}
+  .mg-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#efe7da}
+  .mg-food-grid .mg-img{aspect-ratio:1}
+  .mg-food-grid.one{grid-template-columns:1fr}
+  .mg-food-grid.one .mg-img{aspect-ratio:3/2}
+  .mg-day{display:flex;align-items:center;gap:10px;margin:26px 0 0;font-weight:900;font-size:18px;color:var(--accent-dark);letter-spacing:.06em}
+  .mg-day::before,.mg-day::after{content:"";flex:1;height:1px;background:#d9b99c}
+  .mg-day span{background:#fff;border:1px solid #d9b99c;border-radius:999px;padding:4px 14px}
+  .mg-plain{border-left:0}
+  .mag-end{text-align:center;font-size:15px;color:#8a7a66;letter-spacing:.2em;margin-top:6px}
   .fam-head{display:flex;gap:12px;align-items:center;background:var(--cream);border-radius:16px;padding:10px 12px;margin-bottom:6px}
   .fam-head .st{width:96px;height:80px;flex:none;background:url(images/travel_sticker_concept.webp) center/contain no-repeat}
   .fam-head p{font-weight:700;color:#634927}
@@ -265,7 +320,13 @@
     ['', '写真なし（イラスト）'],
     ['images/nobeyama_highland.webp', '野辺山高原'],
     ['images/nobeyama_station.webp', '野辺山駅'],
-    ['images/suwa.webp', '諏訪湖']
+    ['images/suwa.webp', '諏訪湖'],
+    ['images/nagoya_sakuradori.webp', '名古屋駅 桜通口'],
+    ['images/nakatsugawa_juku.webp', '中津川宿'],
+    ['images/kiso_river.webp', '木曽川（南木曽）'],
+    ['images/ontake_kiso.webp', '御嶽山（木曽谷から）'],
+    ['images/yatsugatake_autumn.webp', '八ヶ岳（11月）'],
+    ['images/matsumoto_castle.webp', '松本城（10月）']
   ];
   const DEFAULT_COVER = 'images/suwa.webp';
   function photoUrl(v) {
@@ -288,8 +349,21 @@
     return jpDay(a, withYear) + '〜' + tail;
   }
   function jpTime(iso) { const d = new Date(iso); if (isNaN(d)) return ''; return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0'); }
-  function avatarChar(name) { const n = String(name || ''); const m = /の(.)$/.exec(n); if (m) return m[1]; const k = n.match(/[一-鿿]/); return k ? k[0] : n.charAt(0) || '？'; }
+  // 家族の呼び方は「まさこ（雅）」のように書くと、かっこの中の字が丸い印になる
+  function parseName(raw) { const m = /^(.*?)[（(]\s*(.+?)\s*[）)]\s*$/.exec(String(raw || '').trim()); return m ? { name: m[1].trim(), mark: m[2] } : { name: String(raw || '').trim(), mark: '' }; }
+  function familyList() { return ((data && data.settings && data.settings.names) || []).map(parseName).filter(x => x.name); }
+  function avatarChar(name) {
+    const n = String(name || ''); const hit = familyList().find(x => x.name === n);
+    if (hit && hit.mark) return hit.mark;
+    const m = /の(.)$/.exec(n); if (m) return m[1];
+    const k = n.match(/[一-鿿]/); if (k) return k[0];
+    // ひらがな等は最初の1文字。ほかの家族と最初の字が重なるときは2文字にする（例：みち・みな）
+    const c = n.charAt(0) || '？';
+    return familyList().some(x => x.name !== n && !x.mark && x.name.charAt(0) === c) ? n.slice(0, 2) : c;
+  }
+
   function telHref(t) { return 'tel:' + String(t || '').replace(/[^\d+]/g, ''); }
+  function walkHref(q) { return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(q || '') + '&travelmode=walking'; }
   function mapHref(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q || ''); }
 
   // ---------- 小さな絵（線のアイコン） ----------
@@ -308,6 +382,8 @@
     send: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>',
     check: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>',
     heart: '<svg class="heart" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5C19 15.6 12 20 12 20Z"/></svg>',
+    mailOpen: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="m3 10 9 6 9-6"/></svg>',
+    imageSm: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>',
     house: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7M5 9v12h14V9"/></svg>'
   };
 
@@ -316,7 +392,7 @@
     let db = null;
     try { db = JSON.parse(ls.get(K_DEMO) || 'null'); } catch (e) {}
     if (!db) {
-      db = { settings: { names: ['雅子', '優', '修', '聡'], notice: '', noticeDate: '', coverPhoto: '' }, plans: window.AKITA_SEED_PLAN ? [JSON.parse(JSON.stringify(window.AKITA_SEED_PLAN))] : [], posts: [], pin: '1234' };
+      db = { settings: { names: ['まさこ（雅）', 'ゆたか（優）', 'おさむ（修）', 'さとし（聡）', 'なおみ（直）', 'みちよ（路）', 'みなこ（美）', 'けいいちろう（慶）'], notice: '', noticeDate: '', coverPhoto: '' }, plans: window.AKITA_SEED_PLAN ? [JSON.parse(JSON.stringify(window.AKITA_SEED_PLAN))] : [], posts: [], pin: '1234' };
       ls.set(K_DEMO, JSON.stringify(db));
     }
     return db;
@@ -383,11 +459,15 @@
   function updateNew() {
     if (!data) return;
     let base = ls.get(K_BASE);
-    if (!base) { base = new Date().toISOString(); ls.set(K_BASE, base); }
+    if (!base) {
+      base = new Date().toISOString(); ls.set(K_BASE, base);
+      const t = todayStr();
+      (data.plans || []).forEach(p => { if ((p.end || p.start) < t) { markRead('plan:' + p.id); markRead('rec:' + p.id); } });
+    }
     const r = readSet(); const mine = me();
     (data.posts || []).forEach(p => { if (p.createdAt > base && !r.has(p.id) && (!mine || p.author !== mine)) sessionNew.add(p.id); });
   }
-  function unreadNew() { const r = readSet(); return (data.posts || []).filter(p => sessionNew.has(p.id) && !r.has(p.id)); }
+  function unreadNew() { return (data.posts || []).filter(isUnread); }
   let seenTimer = null; const seenSince = new Map();
   function checkSeen() {
     const els = app.querySelectorAll('.post.is-new'); if (!els.length) return;
@@ -404,6 +484,7 @@
     if (changed) updateLetter();
   }
   function watchNewPosts() {
+    return; // 2026-10-24：既読は「封筒を開いたとき」に変更
     seenSince.clear();
     if (seenTimer) clearInterval(seenTimer);
     if (!app.querySelector('.post.is-new')) return;
@@ -466,22 +547,82 @@
     return (body ? '<p class="post-text">' + esc(body) + '</p>' : '') +
       urls.map(u => '<a class="link-chip" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(linkLabel(u)) + ' ↗</a>').join('');
   }
+  const openIds = new Set();
+  function isUnread(p) { return sessionNew.has(p.id) && !readSet().has(p.id) && p.author !== me(); }
+  // 家族の予定（kind='plan'）・これまでの記録（kind='rec'）も、便りと同じ「封筒→開く→閉じる」の作り
+  function itemHtml(p, kind) {
+    const key = kind + ':' + p.id, unread = !readSet().has(key), open = openIds.has(key);
+    const d = parseDay(p.start), dateBox = '<span class="date-box"><small>' + (d.getMonth() + 1) + '月</small><b>' + d.getDate() + '</b></span>';
+    const range = esc(jpRange(p.start, p.end, kind === 'rec'));
+    const ps = kind === 'rec' ? postsInPlan(p) : [];
+    const phs = ps.filter(x => x.photo);
+    const counts = ps.length ? '近況' + ps.length + '件' + (phs.length ? '・写真' + phs.length + '枚' : '') : '';
+    const ka = 'data-key="' + esc(key) + '"';
+    if (unread && !open) {
+      return '<button class="post env" data-act="open-item" ' + ka + ' aria-label="' + esc(p.title) + 'を開く">' +
+        '<span class="seal-l" aria-hidden="true"></span><span class="t"><span class="new-tag">' + (kind === 'plan' ? '新しい予定' : '新しい記録') + '</span><b>' + esc(p.title) + '</b><span class="d">' + range + '</span></span><span class="go">押して開く</span></button>';
+    }
+    if (!open) {
+      return '<button class="post closed" data-act="open-item" ' + ka + ' aria-label="' + esc(p.title) + 'を開く">' + dateBox +
+        '<span class="t"><span class="row1"><b>' + esc(p.title) + '</b></span><span class="pv">' + range + '</span>' +
+        '<span class="row2"><span class="read-tag">' + I.mailOpen + (kind === 'plan' ? '見た予定' : '見た記録') + '</span>' + (counts ? '<span class="mini">' + esc(counts) + '</span>' : '') + '</span></span>' +
+        '<span class="go">開く</span></button>';
+    }
+    const img = photoUrl(p.coverImage || p.detailImage) || (phs[0] ? photoUrl(phs[0].photo) : '');
+    let body = '<article class="trip-card item-open" id="item-' + esc(key) + '"><div class="pic">' + (img ? '<div class="photo" style="background-image:url(\'' + esc(img) + '\')"></div>' + '<span class="sticker-big" aria-hidden="true"></span>' : '<div class="no-photo"></div>') + '</div>' +
+      '<div class="trip-copy"><h3>' + esc(p.title) + (p.subtitle ? '<span>' + esc(p.subtitle) + '</span>' : '') + '</h3><p class="dates">' + range + '</p>';
+    if (kind === 'rec') {
+      body += '<p class="muted" style="margin-top:6px">' + (counts ? esc(counts) + 'が残っています。' : 'この行事の近況は、まだありません。') + '</p>';
+      if (phs.length > 1) body += '<div class="thumbs">' + phs.slice(0, 3).map(x => '<span class="photo" style="background-image:url(\'' + esc(photoUrl(x.photo)) + '\')"></span>').join('') + '</div>';
+    }
+    body += '<a class="primary" href="#plan/' + encodeURIComponent(p.id) + '"><span>' + (kind === 'plan' ? '旅のしおりを見る' : '記録を見る') + '</span>' + I.next + '</a>' +
+      '<button class="close-post" data-act="close-item" ' + ka + '>閉じる ▲</button></div></article>';
+    return body;
+  }
   function postHtml(p) {
+    const unread = isUnread(p), open = openIds.has(p.id);
+    const id = esc(p.id), av = avatarChar(p.author), head = '<span class="avatar' + (av.length > 1 ? ' two' : '') + '">' + esc(av) + '</span>';
+    if (unread && !open) {
+      return '<button class="post env" id="post-' + id + '" data-id="' + id + '" data-act="open-post" aria-label="' + esc(p.author) + 'からの新しい便りを開く">' +
+        '<span class="seal-l" aria-hidden="true"></span><span class="t"><span class="new-tag">新しい便り</span><b>' + esc(p.author) + 'より</b><span class="d">' + esc(jpTime(p.createdAt)) + '</span></span><span class="go">押して開く</span></button>';
+    }
+    if (!open) {
+      const first = String(p.text || '').replace(/https?:\/\/\S+/g, '').trim().split('\n')[0];
+      return '<button class="post closed" id="post-' + id + '" data-id="' + id + '" data-act="open-post" aria-label="' + esc(p.author) + 'の便りを開く">' + head +
+        '<span class="t"><span class="row1"><b>' + esc(p.author) + '</b><span class="d">' + esc(jpTime(p.createdAt)) + '</span></span>' +
+        '<span class="pv">' + (first ? esc(first) : (p.photo ? '写真' : (p.text ? 'リンク' : ''))) + '</span>' +
+        '<span class="row2"><span class="read-tag">' + I.mailOpen + (p.author === me() ? 'あなたの便り' : '読んだ便り') + '</span>' + (p.photo ? '<span class="mini">' + I.imageSm + '写真</span>' : '') + (p.seenBy.length ? '<span class="mini">♡ ' + p.seenBy.length + '</span>' : '') + '</span></span>' +
+        '<span class="go">開く</span></button>';
+    }
     const mine = me(); const on = mine && p.seenBy.indexOf(mine) >= 0;
-    const isNew = sessionNew.has(p.id);
-    return '<article class="post' + (isNew ? ' is-new' : '') + '" id="post-' + esc(p.id) + '" data-id="' + esc(p.id) + '">' + (isNew ? '<span class="new-seal" aria-label="新しい便り"><span>新しい便り</span><i></i></span>' : '') + '<div class="post-head"><span class="avatar">' + esc(avatarChar(p.author)) + '</span><div><p class="post-name">' + esc(p.author) + '</p><p class="post-date">' + esc(jpTime(p.createdAt)) + '</p></div></div>' +
+    return '<article class="post open-post" id="post-' + id + '" data-id="' + id + '"><div class="post-head">' + head + '<div><p class="post-name">' + esc(p.author) + '</p><p class="post-date">' + esc(jpTime(p.createdAt)) + '</p></div></div>' +
       textWithLinks(p.text) +
       (p.photo ? '<a href="' + esc(photoUrl(p.photo)) + '" target="_blank" rel="noopener" class="photo" style="background-image:url(\'' + esc(photoUrl(p.photo)) + '\')" aria-label="写真を大きく見る"></a>' : '') +
-      '<div class="seen"><button class="seen-btn' + (on ? ' on' : '') + '" data-act="seen" data-id="' + esc(p.id) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + I.heart + '見たよ' + (p.seenBy.length ? ' ' + p.seenBy.length : '') + '</button>' +
-      (p.seenBy.length ? '<span class="seen-names">' + esc(p.seenBy.join('・')) + '</span>' : '') + '</div></article>';
+      '<div class="seen"><button class="seen-btn' + (on ? ' on' : '') + '" data-act="seen" data-id="' + id + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + I.heart + '見たよ' + (p.seenBy.length ? ' ' + p.seenBy.length : '') + '</button>' +
+      (p.seenBy.length ? '<span class="seen-names">' + esc(p.seenBy.join('・')) + '</span>' : '') + '</div>' +
+      '<button class="close-post" data-act="close-post" data-id="' + id + '">閉じる ▲</button></article>';
   }
+  // 写真の出典（撮影者・使用条件）。写真を足したらここにも足す
+  const CREDITS = [
+    ['野辺山高原', 'Koichi Oda「Autumn morning in Nobeyama highland」（2013年10月）', 'https://commons.wikimedia.org/wiki/File:Autumn_morning_in_Nobeyama_highland_-_Flickr_-_odako1.jpg', 'CC BY-SA 2.0', 'https://creativecommons.org/licenses/by-sa/2.0/'],
+    ['野辺山駅', 'Mister0124「JR Koumi Line Nobeyama Station building」（2021年10月）', 'https://commons.wikimedia.org/wiki/File:JR_Koumi_Line_Nobeyama_Station_building.jpg', 'CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+    ['諏訪湖', '雷太「Lake Suwa, from Tateishi Park; October 2018 (03)」（2018年10月）', 'https://commons.wikimedia.org/wiki/File:Lake_Suwa,_from_Tateishi_Park;_October_2018_(03).jpg', 'CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/'],
+    ['名古屋駅 桜通口', 'そらみみ「View in front of Sakuradori Entrance of Nagoya Station 2」（2015年1月）', 'https://commons.wikimedia.org/wiki/File:View_in_front_of_Sakuradori_Entrance_of_Nagoya_Station_2.JPG', 'CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+    ['中津川宿', 'Asturio Cantabrio「Nakatsugawa-juku」（2024年2月）', 'https://commons.wikimedia.org/wiki/File:Nakatsugawa-juku_ac.jpg', 'CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+    ['木曽川と桃介橋', 'Yen80「Momosuke-bridge-1」（2006年10月）', 'https://commons.wikimedia.org/wiki/File:Momosuke-bridge-1.jpg', 'CC BY-SA 3.0', 'https://creativecommons.org/licenses/by-sa/3.0/'],
+    ['御嶽山', 'Luka Peternel「Ontake-san from Kiso Valley」（2019年11月）', 'https://commons.wikimedia.org/wiki/File:Ontake-san-from-Kiso-Valley-2019-Luka-Peternel.jpg', 'CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+    ['八ヶ岳', 'Koichi Oda「Mt. Yatsugatake Nov 21, 2011」（2011年11月）', 'https://commons.wikimedia.org/wiki/File:Mt._Yatsugatake_Nov_21,_2011_-_Flickr_-_odako1.jpg', 'CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/'],
+    ['松本城', '雷太「Matsumoto Castle, Nagano Prefecture; October 2018 (01)」（2018年10月）', 'https://commons.wikimedia.org/wiki/File:Matsumoto_Castle,_Nagano_Prefecture;_October_2018_(01).jpg', 'CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/'],
+    ['栗きんとん', 'Asturio Cantabrio「Ena Kawakamiya Kurikinton」（2025年10月）', 'https://commons.wikimedia.org/wiki/File:Ena_Kawakamiya_Kurikinton_ac.jpg', 'CC BY-SA 4.0', 'https://creativecommons.org/licenses/by-sa/4.0/'],
+    ['信州そば', 'hirotomo「Shinshu soba, ten zaru」（2006年3月、諏訪）', 'https://commons.wikimedia.org/wiki/File:Shinshu_soba,_ten_zaru_by_hirotomo_in_Suwa,_Nagano.jpg', 'CC BY-SA 2.0', 'https://creativecommons.org/licenses/by-sa/2.0/'],
+    ['おやき', 'Ocdp「Oyaki 001」（2021年11月）', 'https://commons.wikimedia.org/wiki/File:Oyaki_001.jpg', 'CC0', 'https://creativecommons.org/publicdomain/zero/1.0/']
+  ];
   function creditsHtml() {
     return '<details class="credits"><summary>写真の出典・使用条件</summary><ul>' +
-      '<li>野辺山高原：Koichi Oda「Autumn morning in Nobeyama highland」（2013年）<a href="https://commons.wikimedia.org/wiki/File:Autumn_morning_in_Nobeyama_highland_-_Flickr_-_odako1.jpg" target="_blank" rel="noopener">出典</a>／<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>' +
-      '<li>野辺山駅：Mister0124「JR Koumi Line Nobeyama Station building」（2021年）<a href="https://commons.wikimedia.org/wiki/File:JR_Koumi_Line_Nobeyama_Station_building.jpg" target="_blank" rel="noopener">出典</a>／<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>' +
-      '<li>諏訪湖：雷太「Lake Suwa, from Tateishi Park; October 2018 (03)」（2018年）<a href="https://commons.wikimedia.org/wiki/File:Lake_Suwa,_from_Tateishi_Park;_October_2018_(03).jpg" target="_blank" rel="noopener">出典</a>／<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></li>' +
-      '</ul><p>写真は縮小して表示しています。撮影時期は旅行日とは異なります。イラストはこのアプリのために作成したものです。</p></details>';
+      CREDITS.map(c => '<li>' + esc(c[0]) + '：' + esc(c[1]) + ' <a href="' + c[2] + '" target="_blank" rel="noopener">出典</a>／<a href="' + c[4] + '" target="_blank" rel="noopener">' + esc(c[3]) + '</a></li>').join('') +
+      '</ul><p>写真は縮小して表示しています。撮影時期は旅行日とは異なり、宿や当日の景色を写したものではありません。イラストはこのアプリのために作成したものです。</p></details>';
   }
+
 
   // ---------- ① 表紙 ----------
   function renderHome() {
@@ -500,17 +641,9 @@
         (s.noticeDate ? '<p class="d">' + esc(jpTime(s.noticeDate).replace(/ .*/, '')) + '　幹事より</p>' : '') + '</div></div>';
     }
     h += '<div class="top-h"><span class="no">01</span><h2>家族の予定</h2></div>';
-    if (next) {
-      const img = photoUrl(next.coverImage);
-      h += '<article class="trip-card"><div class="pic">' + (img ? '<div class="photo" style="background-image:url(\'' + esc(img) + '\')"></div>' + (next.coverLabel ? '<span class="badge">' + esc(next.coverLabel) + '</span>' : '') + '<span class="sticker-big" aria-hidden="true"></span>' : '<div class="no-photo"></div>') + '</div>' +
-        '<div class="trip-copy"><h3>' + esc(next.title) + (next.subtitle ? '<span>' + esc(next.subtitle) + '</span>' : '') + '</h3>' +
-        '<p class="dates">' + esc(jpRange(next.start, next.end)) + '</p>' +
-        '<a class="primary" href="#plan/' + encodeURIComponent(next.id) + '"><span>旅のしおりを見る</span>' + I.next + '</a></div></article>';
-      if (others.length) {
-        h += others.map(p => { const d = parseDay(p.start); return '<a class="plan-row" href="#plan/' + encodeURIComponent(p.id) + '"><span class="d"><small>' + (d.getMonth() + 1) + '月</small><b>' + d.getDate() + '</b></span><span class="t"><strong>' + esc(p.title) + '</strong><span>' + esc(jpRange(p.start, p.end)) + '</span></span><i>›</i></a>'; }).join('');
-      } else {
-        h += '<p class="empty">ほかの予定は、決まりしだいお知らせします。</p>';
-      }
+    if (up.length) {
+      h += up.map(p => itemHtml(p, 'plan')).join('');
+      if (!others.length) h += '<p class="empty">ほかの予定は、決まりしだいお知らせします。</p>';
     } else {
       h += '<p class="empty">新しい予定は、決まりしだいお知らせします。</p>';
     }
@@ -527,8 +660,7 @@
     }
     h += '<div class="top-h"><span class="no">03</span><h2>これまでの記録</h2></div>';
     if (past.length) {
-      h += past.map(p => { const ps = postsInPlan(p); const ph = ps.filter(x => x.photo).length; const d = parseDay(p.start);
-        return '<a class="plan-row" href="#plan/' + encodeURIComponent(p.id) + '"><span class="d"><small>' + (d.getMonth() + 1) + '月</small><b>' + d.getDate() + '</b></span><span class="t"><strong>' + esc(p.title) + '</strong><span>' + esc(jpRange(p.start, p.end, true)) + (ps.length ? '・近況' + ps.length + '件' + (ph ? '・写真' + ph + '枚' : '') : '') + '</span></span><i>›</i></a>'; }).join('');
+      h += past.map(p => itemHtml(p, 'rec')).join('');
     } else {
       h += '<div class="memory"><div class="st" aria-hidden="true"></div><p><strong>家族の時間を、記録に。</strong>おでかけの記録や写真が、ここに残ります。</p></div>';
     }
@@ -546,13 +678,13 @@
     if (!p) { app.innerHTML = '<div class="sub-page">' + subbar('旅のしおり', I.book, '旅のしおり') + '<div class="sub-body"><p class="empty">この予定は見つかりませんでした。</p></div></div>'; return; }
     const img = photoUrl(p.detailImage || p.coverImage);
     let h = subbar('旅のしおり', I.book, '旅のしおり') + '<div class="sub-body">';
-    if (img) h += '<div class="sub-photo"><div class="photo" style="background-image:url(\'' + esc(img) + '\')"></div>' + (p.detailLabel ? '<span class="badge">' + esc(p.detailLabel) + '</span>' : '') + '</div>';
+    if (img) h += '<div class="sub-photo"><div class="photo" style="background-image:url(\'' + esc(img) + '\')"></div>' + '</div>';
     h += '<h2 class="sub-title">' + esc(p.title) + (p.subtitle ? '<span>' + esc(p.subtitle) + '</span>' : '') + '</h2>';
     h += '<p class="sub-dates">' + esc(jpRange(p.start, p.end, true)) + (p.people ? '・' + esc(p.people) : '') + '</p>';
     if (p.place) h += '<p class="sub-place">' + I.pin + ' ' + esc(p.place) + '</p>';
     const m = p.meeting || {};
     if (m.when || m.where) {
-      h += '<section class="meeting"><p class="k">' + I.pin + '集合場所・時刻</p>' + (m.when ? '<p class="when">' + esc(m.when) + '</p>' : '') + (m.where ? '<p class="place">' + esc(m.where) + '</p>' : '') + (m.note ? '<p class="note">' + esc(m.note) + '</p>' : '') + '</section>';
+      h += '<h3 class="sub-h">集合場所・時刻</h3><section class="meeting" style="margin-top:0">' + (m.when ? '<p class="when">' + esc(m.when) + '</p>' : '') + (m.where ? '<p class="place">' + esc(m.where) + '</p>' : '') + (m.note ? '<p class="note">' + esc(m.note) + '</p>' : '') + ((m.map || m.where) ? '<a class="secondary meet-map" href="' + esc(walkHref(m.map || m.where)) + '" target="_blank" rel="noopener">' + illu('map', 40, 40) + '<span>地図で道順を見る（歩き）</span></a>' : '') + '</section>';
     }
     const days = (p.days || []).filter(d => (d.events || []).length);
     if (days.length) {
@@ -574,16 +706,42 @@
         '</article>').join('');
     }
     if ((p.memos || []).length) {
-      h += '<h3 class="sub-h">風景と、土地の味。</h3>';
+      // 旅雑誌の特集ページのような見せ方（中身は幹事用で編集する紹介文）。旅の順番に並べ、日が変わると日付の帯を入れる
+      let no = 0, lastDay = '';
+      const two = n => String(n).padStart(2, '0');
+      const text = t => t ? '<p class="mg-text">' + esc(t) + '</p>' : '';
+      const img = (src, alt) => '<img class="mg-img" src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async">';
+      const FOOD_DEFAULT = [
+        { photo: 'images/kurikinton_photo.webp', illu: 'kurikinton', place: '中津川', name: '栗きんとん' },
+        { photo: 'images/soba_photo.webp', illu: 'soba', place: '信州', name: 'そば' }
+      ];
+      const foodsHtml = list => '<div class="mg-food-grid' + (list.length === 1 ? ' one' : '') + '">' + list.map(f =>
+        '<figure>' + img(f.photo, f.name + 'の写真') + '<figcaption>' + (f.illu ? illu(f.illu, 28, 28) : '') + '<span><small>' + esc(f.place || '') + '</small><b>' + esc(f.name) + '</b></span></figcaption></figure>').join('') + '</div>';
+      h += '<section class="mag"><header class="mag-head"><p class="mag-kicker"><span>特集</span>この旅の読みもの</p><h3 class="mag-title">風景と、<br>土地の味。</h3>' +
+        '<p class="mag-lead">' + esc(p.place || '') + (p.place ? '。' : '') + '道のりと景色、その土地の味を、旅の順にめぐる。</p></header>';
       h += p.memos.map(mm => {
-        if (mm.image === 'map') return '<div class="route-card">' + illu('map', 60, 66) + '<div><strong>' + esc(mm.title) + '</strong><p>' + esc(mm.text) + '</p></div></div>';
-        if (mm.image === 'suwa') return '<figure class="dest-card" style="margin:0 0 14px"><div class="photo" role="img" aria-label="諏訪湖の写真" style="background-image:url(' + IMG.suwa + ')"></div><div class="cap"><strong>' + esc(mm.title) + '</strong><span>' + esc(mm.text) + '</span></div></figure>';
-        if (mm.image === 'food') return '<div class="local-food"><h4>' + esc(mm.title) + '</h4><div class="food-grid"><figure>' + illu('kurikinton', 0, 0).replace('width:0px;height:0px;', '') + '<span>中津川</span><strong>栗きんとん</strong></figure><figure>' + illu('soba', 0, 0).replace('width:0px;height:0px;', '') + '<span>長野</span><strong>信州そば</strong></figure></div><p>' + esc(mm.text) + '</p></div>';
-        return '<div class="info-block"><strong>' + esc(mm.title) + '</strong><p>' + esc(mm.text) + '</p></div>';
+        let out = '';
+        if (mm.day && mm.day !== lastDay) { lastDay = mm.day; out += '<p class="mg-day"><span>' + esc(mm.day) + '</span></p>'; }
+        const photo = mm.image === 'suwa' ? IMG.suwa : (/^images\//.test(mm.image || '') ? mm.image : '');
+        const caption = mm.caption || (/^写真[：:]/.test(mm.text || '') ? mm.text : '');
+        const body = /^写真[：:]/.test(mm.text || '') ? '' : mm.text;
+        const foods = mm.foods || (mm.image === 'food' ? FOOD_DEFAULT : null);
+        if (mm.image === 'map') {
+          return out + '<article class="mg-route"><div class="mg-route-ill">' + illu('map', 64, 70) + '<span class="mg-dash" aria-hidden="true"></span></div><div><p class="mg-label">道のり</p><h4 class="mg-h">' + esc(mm.title) + '</h4>' + text(body) + '</div></article>';
+        }
+        no++;
+        if (photo) {
+          out += '<article class="mg-photo"><figure>' + img(photo, mm.title) + (caption ? '<figcaption class="mg-cap">' + esc(caption) + '</figcaption>' : '') + '</figure>';
+        } else {
+          out += '<article class="mg-plain">';
+        }
+        out += '<div class="mg-copy"><p class="mg-no">' + two(no) + '</p>' + (foods ? '<p class="mg-label">土地の味</p>' : '') + '<h4 class="mg-h">' + esc(mm.title) + '</h4>' + text(body) + (foods ? foodsHtml(foods) : '') + '</div></article>';
+        return out;
       }).join('');
+      h += '<p class="mag-end">― 旅のしおり 特集 ―</p></section>';
     }
     const ps = postsInPlan(p);
-    h += '<h3 class="sub-h">秋田家だより<span class="seal small" aria-hidden="true"></span></h3><div class="fam-head"><div class="st" aria-hidden="true"></div><p>一枚の写真から、<br>話の続きが始まる。</p></div>';
+    h += '<h3 class="sub-h">この旅の写真と便り<span class="seal small" aria-hidden="true"></span></h3><div class="fam-head"><div class="st" aria-hidden="true"></div><p>一枚の写真から、<br>話の続きが始まる。</p></div><p class="muted" style="font-size:16px;margin:4px 0 6px">旅のあいだに届いた便りです。表紙の「秋田家だより」にも同じものが並びます。</p>';
     h += ps.length ? ps.map(postHtml).join('') : '<p class="empty">旅のあいだの近況や写真が、ここに並びます。</p>';
     h += '<a class="primary" href="#post" style="margin-top:20px">' + I.plus + '<span>近況・写真を投稿する</span></a>';
     h += creditsHtml() + '</div>';
@@ -593,7 +751,7 @@
 
   // ---------- ③ 投稿 ----------
   function whoButtons(act) {
-    const names = (data.settings && data.settings.names) || [];
+    const names = familyList().map(x => x.name);
     return '<div class="who">' + names.map(n => '<button data-act="' + act + '" data-name="' + esc(n) + '"' + (n === me() ? ' class="on"' : '') + '>' + esc(n) + '</button>').join('') + '</div>';
   }
   function renderPost() {
@@ -651,8 +809,8 @@
       '<input type="file" id="cover-file" accept="image/*" hidden><div class="acts"><button class="secondary" data-act="cover-pick">写真を変える</button>' + (s.coverPhoto ? '<button class="secondary" data-act="cover-reset">仮の写真にもどす</button>' : '') + '</div></div>';
     h += '<div class="card"><h3>' + I.cal + '予定・旅のしおり</h3>' + sortedPlans().map(p => '<div class="adm-row"><div class="t"><b>' + esc(p.title) + '</b><small>' + esc(jpRange(p.start, p.end, true)) + '</small></div><a class="secondary" href="#admin/plan/' + encodeURIComponent(p.id) + '">直す</a><button class="secondary danger" data-act="plan-del" data-id="' + esc(p.id) + '">消す</button></div>').join('') +
       '<div class="acts"><a class="primary" href="#admin/plan/new" style="min-height:54px">＋ 新しい予定を作る</a></div></div>';
-    h += '<div class="card"><h3>' + I.people + '家族の呼び方</h3><p class="muted" style="font-size:16px">「あなたは誰？」のボタンと、近況の名前に使います。</p><div class="names-grid" style="margin-top:8px">' +
-      [0, 1, 2, 3, 4, 5].map(i => '<input type="text" class="name-in" maxlength="12" value="' + esc((s.names || [])[i] || '') + '" placeholder="' + (i < 4 ? '呼び方' : '（あれば）') + '" aria-label="家族の呼び方' + (i + 1) + '">').join('') +
+    h += '<div class="card"><h3>' + I.people + '家族の呼び方</h3><p class="muted" style="font-size:16px">「あなたは誰？」のボタンと、近況の名前に使います。「まさこ（雅）」のように書くと、かっこの中の字が丸い印になります。</p><div class="names-grid" style="margin-top:8px">' +
+      Array.from({ length: Math.max(8, ((s.names || []).length) + 3) }, (_, i) => i).map(i => '<input type="text" class="name-in" maxlength="12" value="' + esc((s.names || [])[i] || '') + '" placeholder="' + (i < 4 ? '呼び方' : '（あれば）') + '" aria-label="家族の呼び方' + (i + 1) + '">').join('') +
       '</div><div class="acts"><button class="secondary" data-act="names-save">呼び方を保存する</button></div></div>';
     const posts = (data.posts || []).slice(0, 30);
     h += '<div class="card"><h3>' + I.chat + '秋田家だより</h3><p class="muted" style="font-size:16px">間違って投稿されたものを消せます（新しい30件）。</p>' +
@@ -692,7 +850,7 @@
       '<div class="two"><div><label class="field-label">表紙用の写真</label>' + photoSelect('coverImage', p.coverImage) + '</div><div><label class="field-label">しおり用の写真</label>' + photoSelect('detailImage', p.detailImage) + '</div></div></div>';
     h += '<div class="ed-group"><h4>' + I.pin + '集合場所・時刻</h4><label class="field-label">いつ</label>' + inp('meeting.when', p.meeting.when, '例：11月16日（月）11:00') +
       '<label class="field-label">どこ</label>' + inp('meeting.where', p.meeting.where, '例：JR名古屋駅 桜通口のロータリー') +
-      '<label class="field-label">ひとこと</label>' + inp('meeting.note', p.meeting.note, '') + '</div>';
+      '<label class="field-label">ひとこと</label>' + inp('meeting.note', p.meeting.note, '') + '<label class="field-label">地図で探す場所（空なら上の「どこ」を使います）</label>' + inp('meeting.map', p.meeting.map, '例：名古屋駅 桜通口') + '</div>';
     h += '<div class="ed-group"><h4>' + I.cal + '日ごとの予定</h4>';
     if (!p.days.length) h += '<p class="muted" style="font-size:16px">先に「はじまり」「おわり」の日付を入れると、日ごとの欄が出ます。</p>';
     p.days.forEach((d, di) => {
@@ -712,9 +870,10 @@
         '<button class="ed-del" data-act="ed-del" data-path="stays" data-i="' + i + '">この宿を消す</button></div>';
     });
     h += '<button class="secondary add-row" data-act="ed-add" data-path="stays">＋ 宿・レンタカーを足す</button></div>';
-    h += '<div class="ed-group"><h4>' + I.book + '風景と、土地の味（メモ）</h4>';
+    h += '<div class="ed-group"><h4>' + I.book + '風景と、土地の味（メモ）</h4>' + (window.AKITA_SEED_PLAN && p.id === window.AKITA_SEED_PLAN.id ? '<button class="secondary" data-act="ed-seed" style="width:100%;margin-bottom:10px">特集を最新の版にする（旅の順の写真と文）</button><p class="muted" style="font-size:16px;margin-bottom:8px">押したあと、一番下の「保存する」で家族の画面に反映されます。</p>' : '');
     p.memos.forEach((mm, i) => {
-      h += '<div class="ed-item"><label class="field-label">見出し</label>' + inp('memos.' + i + '.title', mm.title, '') + '<label class="field-label">文</label><textarea data-bind="memos.' + i + '.text" style="min-height:90px">' + esc(mm.text || '') + '</textarea>' +
+      h += '<div class="ed-item"><label class="field-label">日の帯（例：1日目　11月16日（月））</label>' + inp('memos.' + i + '.day', mm.day, '') + '<label class="field-label">見出し</label>' + inp('memos.' + i + '.title', mm.title, '') + '<label class="field-label">文</label><textarea data-bind="memos.' + i + '.text" style="min-height:90px">' + esc(mm.text || '') + '</textarea>' +
+        (mm.foods ? '<p class="muted" style="font-size:16px;margin-top:6px">（名物の写真付き）</p>' : '') + (mm.image === 'map' || mm.image === 'food' ? '<p class="muted" style="font-size:16px;margin-top:6px">（このメモはイラスト付きです）</p>' : '<label class="field-label">写真</label>' + photoSelect('memos.' + i + '.image', mm.image === 'suwa' ? 'images/suwa.webp' : mm.image)) +
         '<button class="ed-del" data-act="ed-del" data-path="memos" data-i="' + i + '">このメモを消す</button></div>';
     });
     h += '<button class="secondary add-row" data-act="ed-add" data-path="memos">＋ メモを足す</button></div>';
@@ -796,6 +955,10 @@
     try {
       if (act === 'retry') { app.innerHTML = '<p class="loading">読み込んでいます…</p>'; await refresh(); }
       else if (act === 'more') { postLimit += 20; renderHome(); }
+      else if (act === 'open-post') { const id = el.dataset.id; openIds.add(id); markRead(id); render(); const t = document.getElementById('post-' + id); if (t && t.getBoundingClientRect().top < 60) t.scrollIntoView({ block: 'start' }); updateLetter(); }
+      else if (act === 'open-item') { const k = el.dataset.key; openIds.add(k); markRead(k); render(); }
+      else if (act === 'close-item') { const k = el.dataset.key; openIds.delete(k); render(); const t = app.querySelector('[data-key="' + k + '"]'); if (t) { const b = t.getBoundingClientRect(); if (b.top < 60 || b.bottom > window.innerHeight) t.scrollIntoView({ block: 'center' }); } }
+      else if (act === 'close-post') { const id = el.dataset.id; openIds.delete(id); render(); const t = document.getElementById('post-' + id); if (t) { const b = t.getBoundingClientRect(); if (b.top < 60 || b.bottom > window.innerHeight) t.scrollIntoView({ block: 'center' }); } }
       else if (act === 'to-dayori') { e.preventDefault(); const t = document.getElementById('dayori'); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 12, behavior: 'smooth' }); }
       else if (act === 'seen') {
         if (!me()) { ss.set('akita_who_back', location.hash || '#'); location.hash = '#who'; return; }
@@ -858,6 +1021,13 @@
         else arr.push({ time: '', title: '', note: '' });
         renderPlanEdit(planDraft._for);
       }
+      else if (act === 'ed-seed') {
+        if (!confirm('特集（風景と、土地の味）を最新の版に入れかえますか？')) return;
+        const sd = JSON.parse(JSON.stringify(window.AKITA_SEED_PLAN));
+        planDraft.memos = sd.memos; planDraft.detailImage = sd.detailImage; planDraft.coverImage = planDraft.coverImage || sd.coverImage; planDraft.coverLabel = ''; planDraft.detailLabel = '';
+        planDraft.meeting = planDraft.meeting || {}; if (!planDraft.meeting.map) planDraft.meeting.map = (sd.meeting || {}).map || '';
+        renderPlanEdit(planDraft._for); toast('入れかえました。下の「保存する」を押してください。');
+      }
       else if (act === 'ed-del') { getPath(planDraft, el.dataset.path).splice(+el.dataset.i, 1); renderPlanEdit(planDraft._for); }
       else if (act === 'plan-save') {
         const p = JSON.parse(JSON.stringify(planDraft)); const forId = p._for; delete p._for;
@@ -865,10 +1035,10 @@
         if (!p.title.trim() || !p.start) { msg.innerHTML = '<p class="err">題名と「はじまり」の日付を入れてください。</p>'; return; }
         if (!p.end || p.end < p.start) p.end = p.start;
         p.days = (p.days || []).map(d => ({ date: d.date, events: d.events.filter(ev => (ev.time || ev.title || ev.note)) }));
-        p.stays = p.stays.filter(s => s.name); p.memos = p.memos.filter(m => m.title || m.text);
+        p.stays = p.stays.filter(s => s.name); p.memos = p.memos.filter(m => m.title || m.text || m.foods);
         if (forId === 'new') p.id = '';
         el.disabled = true;
-        try { await api('savePlan', { pin: ss.get(K_PIN), plan: p }); }
+        try { const rr = await api('savePlan', { pin: ss.get(K_PIN), plan: p }); if (rr && rr.id) markRead('plan:' + rr.id); }
         catch (err) { el.disabled = false; msg.innerHTML = '<p class="err">保存できませんでした。' + esc(err.message) + '</p>'; return; }
         planDraft = null; toast('予定を保存しました。'); await refresh(true); location.hash = '#admin';
       }

@@ -8,13 +8,14 @@ window.AKITA_SEED_PLAN = {
   "place": "野辺山・諏訪湖・八ヶ岳",
   "people": "大人4人",
   "coverImage": "images/nobeyama_highland.webp",
-  "coverLabel": "野辺山高原の朝",
-  "detailImage": "images/nobeyama_station.webp",
-  "detailLabel": "野辺山駅",
+  "coverLabel": "",
+  "detailImage": "images/nobeyama_highland.webp",
+  "detailLabel": "",
   "meeting": {
     "when": "11月16日（月）11:00",
     "where": "JR名古屋駅 桜通口のロータリー",
-    "note": "新幹線（のぞみ6号）は小倉7:31発、名古屋10:34着。幹事はレンタカーで名古屋駅へ向かいます。"
+    "note": "新幹線（のぞみ6号）は小倉7:31発、名古屋10:34着。幹事はレンタカーで名古屋駅へ向かいます。",
+    "map": "名古屋駅 桜通口"
   },
   "days": [
     {
@@ -154,24 +155,94 @@ window.AKITA_SEED_PLAN = {
   ],
   "memos": [
     {
-      "title": "高原の空を眺めに、野辺山へ。",
-      "text": "野辺山の駅舎と、その先に広がる高原。景色を眺める時間も、旅の楽しみに。2日目の午前に向かいます。",
-      "image": ""
+      "day": "1日目　11月16日（月）",
+      "title": "桜通口、11時に集合。",
+      "text": "名古屋駅の桜通口ロータリーで4人がそろったら、車の旅がはじまります。",
+      "image": "images/nagoya_sakuradori.webp",
+      "caption": "写真：名古屋駅 桜通口の前"
     },
     {
-      "title": "国道19号、北へ。",
-      "text": "中津川を通り、長野方面へ向かいます。",
-      "image": "map"
+      "day": "1日目　11月16日（月）",
+      "title": "中山道の宿場町、中津川。",
+      "text": "栗きんとんで知られる町。昼はそばと、ぜんざいを。立ち寄る店は「くるまや」「すや」を計画中です。",
+      "image": "images/nakatsugawa_juku.webp",
+      "caption": "写真：中津川宿の町並み",
+      "foods": [
+        {
+          "photo": "images/kurikinton_photo.webp",
+          "illu": "kurikinton",
+          "place": "中津川",
+          "name": "栗きんとん"
+        }
+      ]
     },
     {
+      "day": "1日目　11月16日（月）",
+      "title": "国道19号、木曽川に沿って北へ。",
+      "text": "高速道路は使わず、国道19号で木曽路を北へ。道に寄り添って流れる木曽川は、幹事がいちばん好きな景色です。",
+      "image": "images/kiso_river.webp",
+      "caption": "写真：南木曽の木曽川と桃介橋（10月）"
+    },
+    {
+      "day": "1日目　11月16日（月）",
+      "title": "晴れたら、御嶽山。",
+      "text": "木曽谷からは、天気がよければ御嶽山が見えるかもしれません。",
+      "image": "images/ontake_kiso.webp",
+      "caption": "写真：木曽谷から見た御嶽山（11月）"
+    },
+    {
+      "day": "1日目　11月16日（月）",
       "title": "湖と町がつくる、諏訪の風景。",
-      "text": "写真：立石公園から見た諏訪湖",
-      "image": "suwa"
+      "text": "1泊目は諏訪湖のほとり。客室から湖を望みます。",
+      "image": "images/suwa.webp",
+      "caption": "写真：立石公園から見た諏訪湖（10月）"
     },
     {
-      "title": "栗とそば、土地の味。",
-      "text": "栗きんとんの素朴な甘み、そばの香り。旅のあいだに、そばとおやきは必ず味わいたいところです。",
-      "image": "food"
+      "day": "2日目　11月17日（火）",
+      "title": "高原の空を眺めに、野辺山へ。",
+      "text": "野辺山の駅舎と、その先に広がる高原。午前のうちに向かいます。",
+      "image": "images/nobeyama_station.webp",
+      "caption": "写真：野辺山駅"
+    },
+    {
+      "day": "2日目　11月17日（火）",
+      "title": "八ヶ岳のふもとで、もう一泊。",
+      "text": "2泊目は山梨県北杜市のコテージ。露天風呂と、しゃぶしゃぶの夕食が待っています。",
+      "image": "images/yatsugatake_autumn.webp",
+      "caption": "写真：11月の八ヶ岳"
+    },
+    {
+      "day": "2日目　11月17日（火）",
+      "title": "信州で、そばとおやきを。",
+      "text": "旅のあいだに、そばとおやきは必ず味わいたいところ。昼食の店は、まだ決めていません。",
+      "image": "",
+      "foods": [
+        {
+          "photo": "images/soba_photo.webp",
+          "illu": "soba",
+          "place": "信州",
+          "name": "そば"
+        },
+        {
+          "photo": "images/oyaki_photo.webp",
+          "illu": "",
+          "place": "信州",
+          "name": "おやき"
+        }
+      ]
+    },
+    {
+      "day": "3日目　11月18日（水）",
+      "title": "松本か、安曇野か。",
+      "text": "帰り道は、松本の町か安曇野に寄り道。どちらにするかは、まだ決めていません。",
+      "image": "images/matsumoto_castle.webp",
+      "caption": "写真：10月の松本城"
+    },
+    {
+      "day": "3日目　11月18日（水）",
+      "title": "中央道、南へ。",
+      "text": "帰りは中央道を南へ。18時10分発の新幹線に間に合うよう、名古屋駅をめざします。",
+      "image": "map"
     }
   ]
 };
