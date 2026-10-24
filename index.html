@@ -78,8 +78,8 @@
   .plan-row .t{flex:1;min-width:0} .plan-row strong{display:block;font-size:19px;line-height:1.5} .plan-row span{font-size:16px;color:var(--muted)}
   .plan-row i{font-style:normal;font-size:22px;color:var(--muted)}
   .stickers{display:flex;align-items:center;gap:12px;background:var(--cream);border-radius:18px;padding:12px 14px}
-  .stickers .row{display:flex;flex-wrap:wrap;gap:2px;max-width:150px}
-  .stickers .row i{width:44px;height:34px;background:url(images/travel_sticker_concept.webp) center/contain no-repeat;display:block}
+  .stickers .row{display:flex;flex-wrap:wrap;gap:4px;max-width:150px}
+  .stickers .row i{width:34px;height:34px;background:url(images/wax_seal.webp) center/contain no-repeat;display:block}
   .stickers .row i:nth-child(3n+2){transform:rotate(-8deg)} .stickers .row i:nth-child(3n){transform:rotate(6deg)}
   .stickers p{font-size:17px;color:#634927;line-height:1.5}
   .post{background:#fff;border-radius:20px;padding:16px;margin-top:12px;box-shadow:0 2px 10px #6a4a2a0f;position:relative}
@@ -200,7 +200,7 @@
   .chosen img{width:100%;border-radius:16px;display:block}
   .chosen button{position:absolute;top:10px;right:10px;background:#fff;border:0;border-radius:999px;min-height:48px;padding:6px 14px;font-weight:700;color:var(--muted);box-shadow:0 2px 8px #0003}
   .hint{display:flex;gap:10px;align-items:center;background:#fff4dc;border-radius:16px;padding:12px;margin-top:20px;color:#634927}
-  .hint i{width:60px;height:46px;flex:none;background:url(images/travel_sticker_concept.webp) center/contain no-repeat}
+  .hint i{width:46px;height:46px;flex:none;background:url(images/wax_seal.webp) center/contain no-repeat}
   .done{margin-top:14px;border-radius:16px;background:#eef6f1;color:#245d43;padding:14px;display:flex;gap:10px;align-items:center;font-weight:700}
   .err{margin-top:12px;border-radius:14px;background:#fff1ec;color:#9b381d;padding:12px 14px;font-weight:700;font-size:17px}
   .gate{padding:0 22px 40px}
@@ -518,7 +518,7 @@
     h += '<p class="sec-lead">それぞれの暮らしから、届いた話。</p>';
     const n = Math.min(monthCount, 9);
     h += '<div class="stickers">' + (n ? '<div class="row">' + '<i></i>'.repeat(n) + '</div>' : '<div class="row"><i style="opacity:.35"></i></div>') +
-      '<p><b>今月の旅のシール' + (monthCount ? '　' + monthCount + '枚' : '') + '</b><br>近況が届くたびに増えます。</p></div>';
+      '<p><b>今月の便り' + (monthCount ? '　' + monthCount + '通' : '') + '</b><br>便りが届くたびに、封蝋がひとつ増えます。</p></div>';
     if (posts.length) {
       h += posts.slice(0, postLimit).map(postHtml).join('');
       if (posts.length > postLimit) h += '<button class="secondary more-btn" data-act="more">もっと見る</button>';
@@ -608,7 +608,7 @@
     h += '<p class="label">写真<small>（なくても投稿できます）</small></p><input type="file" id="post-file" accept="image/*" hidden>';
     h += draftPhoto ? '<div class="chosen"><img src="' + esc(draftPhoto) + '" alt="選んだ写真"><button data-act="pick-photo">選び直す</button></div>' :
       '<button class="pick" data-act="pick-photo">' + I.image.replace('width="22" height="22"', 'width="38" height="38"') + '写真を選ぶ<small>スマホの写真から1枚選べます</small></button>';
-    h += '<div class="hint"><i aria-hidden="true"></i><p>投稿すると、旅のシールが1枚増えます。</p></div>';
+    h += '<div class="hint"><i aria-hidden="true"></i><p>投稿すると、表紙の「今月の便り」に封蝋がひとつ増えます。</p></div>';
     h += '<button class="primary" data-act="send-post" style="margin-top:16px"' + (me() ? '' : ' disabled') + '>' + I.send + '<span>投稿する</span></button><div id="post-msg"></div>';
     h += '</div>';
     app.innerHTML = '<div class="sub-page">' + h + '</div>';
