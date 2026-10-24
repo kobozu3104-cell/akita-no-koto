@@ -1,0 +1,14 @@
+{
+  "name": "秋田家のこと",
+  "short_name": "秋田家のこと",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF5EA",
+  "theme_color": "#B64224",
+  "lang": "ja",
+  "icons": [
+    { "src": "icons/akita-family-book-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/akita-family-book-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
