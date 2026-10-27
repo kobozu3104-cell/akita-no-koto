@@ -279,6 +279,10 @@
   .ed-row .full{grid-column:1/-1}
   .ed-item{border-top:1px dashed #d9ded5;padding-top:10px;margin-top:10px}
   .ed-item:first-of-type{border-top:0;margin-top:0;padding-top:0}
+  .ed-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .ed-tool{min-height:48px;min-width:56px;padding:6px 10px;border-radius:10px;border:1px solid #d4dbd0;background:#f7f9f5;color:var(--green);font-weight:700;font-size:16px}
+  .ed-tool:disabled{opacity:.35}
+  .ed-tools .ed-del{border:1px solid #e8c1b3;background:#fff7f4;margin-left:auto}
   .ed-del{background:none;border:0;color:#9b381d;font-weight:700;min-height:48px;padding:0 6px}
   .add-row{margin-top:10px;width:100%}
   .field-label{font-size:16px;color:var(--muted);font-weight:700;margin:12px 0 4px;display:block}
@@ -853,13 +857,21 @@
       '<label class="field-label">ひとこと</label>' + inp('meeting.note', p.meeting.note, '') + '<label class="field-label">地図で探す場所（空なら上の「どこ」を使います）</label>' + inp('meeting.map', p.meeting.map, '例：名古屋駅 桜通口') + '</div>';
     h += '<div class="ed-group"><h4>' + I.cal + '日ごとの予定</h4>';
     if (!p.days.length) h += '<p class="muted" style="font-size:16px">先に「はじまり」「おわり」の日付を入れると、日ごとの欄が出ます。</p>';
+    const stayLinks = (p.stays || []).filter(x => x.url).map(x => [x.url, x.name]);
     p.days.forEach((d, di) => {
+      const path = 'days.' + di + '.events';
       h += '<p class="field-label" style="color:#964219;font-size:18px">' + (di + 1) + '日目　' + esc(jpDay(d.date)) + '</p>';
+      h += '<button class="secondary add-row" data-act="ed-insert" data-path="' + path + '" data-i="-1" style="margin:0 0 6px">＋ 一番上に行を足す</button>';
       d.events.forEach((ev, ei) => {
-        h += '<div class="ed-item"><div class="ed-row"><div>' + inp('days.' + di + '.events.' + ei + '.time', ev.time, '時刻') + '</div><div>' + inp('days.' + di + '.events.' + ei + '.title', ev.title, 'やること') + '</div><div class="full">' + inp('days.' + di + '.events.' + ei + '.note', ev.note, 'ひとこと（あれば）') + '</div></div>' +
-          '<button class="ed-del" data-act="ed-del" data-path="days.' + di + '.events" data-i="' + ei + '">この行を消す</button></div>';
+        const b = path + '.' + ei;
+        const linkOpts = [['', 'なし']].concat(stayLinks);
+        if (ev.link && !linkOpts.some(o => o[0] === ev.link)) linkOpts.push([ev.link, '（今のリンク）']);
+        h += '<div class="ed-item"><div class="ed-row"><div>' + inp(b + '.time', ev.time, '時刻') + '</div><div>' + inp(b + '.title', ev.title, 'やること') + '</div><div class="full">' + inp(b + '.note', ev.note, 'ひとこと（あれば）') + '</div></div>' +
+          '<div class="two" style="margin-top:6px"><div><label class="field-label">宿の公式サイトへのリンク</label><select data-bind="' + b + '.link">' + linkOpts.map(o => '<option value="' + esc(o[0]) + '"' + ((ev.link || '') === o[0] ? ' selected' : '') + '>' + esc(o[1]) + '</option>').join('') + '</select></div>' +
+          '<div><label class="field-label">食事の絵</label><select data-bind="' + b + '.icon"><option value=""' + (ev.icon === 'meal' ? '' : ' selected') + '>なし</option><option value="meal"' + (ev.icon === 'meal' ? ' selected' : '') + '>食事の絵を添える</option></select></div></div>' +
+          rowTools(path, ei, d.events.length) + '</div>';
       });
-      h += '<button class="secondary add-row" data-act="ed-add" data-path="days.' + di + '.events">＋ 行を足す</button>';
+      h += '<button class="secondary add-row" data-act="ed-add" data-path="' + path + '">＋ 一番下に行を足す</button>';
     });
     h += '</div>';
     h += '<div class="ed-group"><h4>' + I.house + '宿・レンタカー</h4>';
@@ -867,19 +879,31 @@
       h += '<div class="ed-item"><label class="field-label">見出し</label>' + inp('stays.' + i + '.label', s.label, '例：1泊目・11月16日（月）') + '<label class="field-label">名前</label>' + inp('stays.' + i + '.name', s.name, '') +
         '<div class="two"><div><label class="field-label">電話</label>' + inp('stays.' + i + '.tel', s.tel, '', 'tel') + '</div><div><label class="field-label">公式サイト</label>' + inp('stays.' + i + '.url', s.url, 'https://', 'url') + '</div></div>' +
         '<label class="field-label">住所（地図に使います）</label>' + inp('stays.' + i + '.address', s.address, '') + '<label class="field-label">ひとこと</label>' + inp('stays.' + i + '.note', s.note, '') +
-        '<button class="ed-del" data-act="ed-del" data-path="stays" data-i="' + i + '">この宿を消す</button></div>';
+        rowTools('stays', i, p.stays.length) + '</div>';
     });
     h += '<button class="secondary add-row" data-act="ed-add" data-path="stays">＋ 宿・レンタカーを足す</button></div>';
     h += '<div class="ed-group"><h4>' + I.book + '風景と、土地の味（メモ）</h4>' + (window.AKITA_SEED_PLAN && p.id === window.AKITA_SEED_PLAN.id ? '<button class="secondary" data-act="ed-seed" style="width:100%;margin-bottom:10px">特集を最新の版にする（旅の順の写真と文）</button><p class="muted" style="font-size:16px;margin-bottom:8px">押したあと、一番下の「保存する」で家族の画面に反映されます。</p>' : '');
     p.memos.forEach((mm, i) => {
       h += '<div class="ed-item"><label class="field-label">日の帯（例：1日目　11月16日（月））</label>' + inp('memos.' + i + '.day', mm.day, '') + '<label class="field-label">見出し</label>' + inp('memos.' + i + '.title', mm.title, '') + '<label class="field-label">文</label><textarea data-bind="memos.' + i + '.text" style="min-height:90px">' + esc(mm.text || '') + '</textarea>' +
         (mm.foods ? '<p class="muted" style="font-size:16px;margin-top:6px">（名物の写真付き）</p>' : '') + (mm.image === 'map' || mm.image === 'food' ? '<p class="muted" style="font-size:16px;margin-top:6px">（このメモはイラスト付きです）</p>' : '<label class="field-label">写真</label>' + photoSelect('memos.' + i + '.image', mm.image === 'suwa' ? 'images/suwa.webp' : mm.image)) +
-        '<button class="ed-del" data-act="ed-del" data-path="memos" data-i="' + i + '">このメモを消す</button></div>';
+        rowTools('memos', i, p.memos.length) + '</div>';
     });
     h += '<button class="secondary add-row" data-act="ed-add" data-path="memos">＋ メモを足す</button></div>';
     h += '<div id="plan-msg"></div><button class="primary" data-act="plan-save" style="margin-top:18px">保存する</button>';
     h += '<a class="secondary" href="#admin" style="width:100%;margin-top:10px" data-act="plan-cancel">保存せずにもどる</a></div>';
     app.innerHTML = '<div class="sub-page">' + h + '</div>';
+  }
+  function rowTools(path, i, n) {
+    const d = (cond) => cond ? ' disabled' : '';
+    return '<div class="ed-tools"><button class="ed-tool" data-act="ed-move" data-path="' + path + '" data-i="' + i + '" data-dir="-1"' + d(i === 0) + '>▲ 上へ</button>' +
+      '<button class="ed-tool" data-act="ed-move" data-path="' + path + '" data-i="' + i + '" data-dir="1"' + d(i === n - 1) + '>▼ 下へ</button>' +
+      '<button class="ed-tool" data-act="ed-insert" data-path="' + path + '" data-i="' + i + '">＋ この下に足す</button>' +
+      '<button class="ed-tool ed-del" data-act="ed-del" data-path="' + path + '" data-i="' + i + '">消す</button></div>';
+  }
+  function newItem(path) {
+    if (path === 'stays') return { label: '', name: '', tel: '', url: '', address: '', note: '', icon: 'hotel' };
+    if (path === 'memos') return { day: '', title: '', text: '', image: '' };
+    return { time: '', title: '', note: '' };
   }
   function getPath(obj, path) { return path.split('.').reduce((o, k) => o == null ? o : o[k], obj); }
   function setPath(obj, path, val) { const ks = path.split('.'); const last = ks.pop(); const o = ks.reduce((a, k) => a[k], obj); o[last] = val; }
@@ -1015,10 +1039,7 @@
       else if (act === 'post-del') { if (!confirm('この近況を消しますか？')) return; await api('deletePost', { pin: ss.get(K_PIN), id: el.dataset.id }); toast('消しました。'); await refresh(); }
       else if (act === 'plan-del') { if (!confirm('この予定を消しますか？（元にはもどせません）')) return; await api('deletePlan', { pin: ss.get(K_PIN), id: el.dataset.id }); toast('消しました。'); await refresh(); }
       else if (act === 'ed-add') {
-        const arr = getPath(planDraft, el.dataset.path);
-        if (el.dataset.path === 'stays') arr.push({ label: '', name: '', tel: '', url: '', address: '', note: '', icon: 'hotel' });
-        else if (el.dataset.path === 'memos') arr.push({ title: '', text: '', image: '' });
-        else arr.push({ time: '', title: '', note: '' });
+        getPath(planDraft, el.dataset.path).push(newItem(el.dataset.path));
         renderPlanEdit(planDraft._for);
       }
       else if (act === 'ed-seed') {
@@ -1028,13 +1049,15 @@
         planDraft.meeting = planDraft.meeting || {}; if (!planDraft.meeting.map) planDraft.meeting.map = (sd.meeting || {}).map || '';
         renderPlanEdit(planDraft._for); toast('入れかえました。下の「保存する」を押してください。');
       }
+      else if (act === 'ed-insert') { getPath(planDraft, el.dataset.path).splice(+el.dataset.i + 1, 0, newItem(el.dataset.path)); renderPlanEdit(planDraft._for); }
+      else if (act === 'ed-move') { const arr = getPath(planDraft, el.dataset.path), i = +el.dataset.i, j = i + (+el.dataset.dir); if (j < 0 || j >= arr.length) return; const t = arr[i]; arr[i] = arr[j]; arr[j] = t; renderPlanEdit(planDraft._for); }
       else if (act === 'ed-del') { getPath(planDraft, el.dataset.path).splice(+el.dataset.i, 1); renderPlanEdit(planDraft._for); }
       else if (act === 'plan-save') {
         const p = JSON.parse(JSON.stringify(planDraft)); const forId = p._for; delete p._for;
         const msg = document.getElementById('plan-msg');
         if (!p.title.trim() || !p.start) { msg.innerHTML = '<p class="err">題名と「はじまり」の日付を入れてください。</p>'; return; }
         if (!p.end || p.end < p.start) p.end = p.start;
-        p.days = (p.days || []).map(d => ({ date: d.date, events: d.events.filter(ev => (ev.time || ev.title || ev.note)) }));
+        p.days = (p.days || []).map(d => ({ date: d.date, events: d.events.filter(ev => (ev.time || ev.title || ev.note)).map(ev => { const o = Object.assign({}, ev); if (!o.link) delete o.link; if (!o.icon) delete o.icon; return o; }) }));
         p.stays = p.stays.filter(s => s.name); p.memos = p.memos.filter(m => m.title || m.text || m.foods);
         if (forId === 'new') p.id = '';
         el.disabled = true;
