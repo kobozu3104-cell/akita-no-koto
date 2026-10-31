@@ -38,7 +38,7 @@
   .badge{position:absolute;top:14px;left:14px;background:#fffdf7;color:#5e4225;padding:5px 12px;border-radius:50px;font-weight:700;box-shadow:0 2px 8px #273a1d16;font-size:17px}
   .muted{color:var(--muted)}
   .demo-bar{background:#293932;color:#fff;font-size:15px;text-align:center;padding:6px 10px}
-  .toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:#293932;color:#fff;padding:12px 18px;border-radius:14px;font-size:17px;z-index:50;max-width:90vw;box-shadow:0 8px 24px #0003}
+  .toast{position:fixed;left:50%;bottom:calc(112px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#293932;color:#fff;padding:12px 18px;border-radius:14px;font-size:17px;z-index:50;max-width:90vw;box-shadow:0 8px 24px #0003}
   .loading{padding:80px 20px;text-align:center;color:var(--muted)}
 
   /* ===== 表紙（トップ） ===== */
@@ -46,7 +46,7 @@
   .mast .issue{display:inline-block;font-size:16px;letter-spacing:.12em;color:var(--accent-dark);border-top:1px solid #d9b99c;border-bottom:1px solid #d9b99c;padding:3px 14px}
   .mast h1{font-size:38px;font-weight:800;letter-spacing:.12em;margin-top:10px;line-height:1.3}
   .mast .tag{font-size:18px;color:var(--muted);margin-top:6px}
-  .cover .photo{aspect-ratio:4/3.3;width:100%}
+  .cover .photo{aspect-ratio:3/2;width:100%;background-size:cover}
   .sheet{position:relative;margin-top:-30px;background:var(--paper);border-radius:30px 30px 0 0;padding:26px 18px 10px}
   .sheet .lead{text-align:center;font-size:20px;font-weight:700;color:#45564b}
   .notice{margin-top:18px;background:#fff;border-left:6px solid var(--accent);border-radius:14px;padding:14px 16px;display:flex;gap:12px;box-shadow:0 3px 14px #8b381f14}
@@ -287,6 +287,28 @@
   .add-row{margin-top:10px;width:100%}
   .field-label{font-size:16px;color:var(--muted);font-weight:700;margin:12px 0 4px;display:block}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+  /* ===== 下の5つのメニュー（2026-10-31） ===== */
+  body.has-nav #app{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+  .bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:#fffcf6f2;border-top:1px solid #e6d8c3;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 -4px 16px #6a4a2a12}
+  .nav-item{flex:1;max-width:104px;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;text-decoration:none;color:#45564b;position:relative;padding:4px 2px 8px}
+  .nav-ico{width:44px;height:44px;background-size:contain;background-position:center;background-repeat:no-repeat;position:relative}
+  .nav-label{font-size:15px;font-weight:700;letter-spacing:.04em;line-height:1.2}
+  .nav-item.on{background:#f6e3cf;color:var(--accent-dark)}
+  .nav-item.on::after{content:"";position:absolute;bottom:4px;left:50%;width:22px;height:3px;margin-left:-11px;border-radius:2px;background:var(--accent)}
+  .nav-badge{position:absolute;top:-2px;right:-8px;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--accent);color:#fff;font-size:13px;font-style:normal;font-weight:800;display:grid;place-items:center;border:2px solid #fffcf6}
+  @media (max-width:340px){.nav-ico{width:38px;height:38px}.nav-label{font-size:14px}}
+  /* 予定・便り・思い出・投稿のページ見出し */
+  .page-head{padding:calc(24px + env(safe-area-inset-top)) 20px 6px}
+  .page-head h1{font-size:28px;font-weight:900;letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+  .page-head p{color:var(--muted);margin-top:4px}
+  .sub-page .page-head{padding-top:calc(20px + env(safe-area-inset-top))}
+  .sheet.flat{margin-top:0;border-radius:0;padding-top:12px}
+  .home-h{font-size:22px;font-weight:800;margin:28px 0 10px}
+  .next-card{display:block;background:#fff;border:1px solid #e6d8c3;border-radius:18px;padding:16px 18px;text-decoration:none;color:inherit;box-shadow:0 3px 14px #6a4a2a12}
+  .next-card b{display:block;font-size:22px;line-height:1.45}
+  .next-card .d{display:block;color:var(--muted);margin-top:4px}
+  .next-card .go{display:block;color:var(--accent);font-weight:700;margin-top:8px}
 </style>
 </head>
 <body>
@@ -534,9 +556,10 @@
     const d = new Date();
     return '<header class="mast"><span class="issue">' + d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日（' + WD[d.getDay()] + '）</span><h1>秋田家のこと</h1><p class="tag">日々の知らせと、折々の記録。</p></header>';
   }
-  function subbar(title, crumbIcon, crumbText, backHref) {
-    return '<div class="subbar"><a class="back" href="' + (backHref || '#') + '">' + I.back + (backHref && backHref !== '#' ? 'もどる' : '表紙へ') + '</a><span class="ttl">' + esc(title) + '</span></div>' +
-      '<div class="crumb"><span class="ico">' + crumbIcon + '</span>表紙 › <b>' + esc(crumbText) + '</b></div>';
+  function subbar(title, crumbIcon, crumbText, backHref, root) {
+    const label = { '#plans': '予定へ', '#memories': '思い出へ', '#dayori': '便りへ', '#admin': 'もどる', '#': 'ホームへ' }[backHref || '#'] || 'もどる';
+    return '<div class="subbar"><a class="back" href="' + (backHref || '#') + '">' + I.back + label + '</a><span class="ttl">' + esc(title) + '</span></div>' +
+      '<div class="crumb"><span class="ico">' + crumbIcon + '</span>' + esc(root || 'ホーム') + ' › <b>' + esc(crumbText) + '</b></div>';
   }
   function linkLabel(u) {
     const h = (u.match(/^https?:\/\/([^/?#]+)/i) || [])[1] || '';
@@ -628,15 +651,31 @@
   }
 
 
-  // ---------- ① 表紙 ----------
+  // ---------- 下の5つのメニュー（2026-10-31 Codexと決めたデザイン） ----------
+  const NAV = [
+    ['home', '#', 'ホーム', 'images/nav-home.webp'],
+    ['plans', '#plans', '予定', 'images/nav-plans.webp'],
+    ['dayori', '#dayori', '便り', 'images/nav-letters.webp'],
+    ['memories', '#memories', '思い出', 'images/nav-memories.webp'],
+    ['post', '#post', '投稿', 'images/nav-write.webp']
+  ];
+  function navHtml(active) {
+    const unread = data ? unreadNew().length : 0;
+    return '<nav class="bottom-nav" aria-label="ページの切り替え">' + NAV.map(n =>
+      '<a class="nav-item' + (n[0] === active ? ' on' : '') + '" href="' + n[1] + '"' + (n[0] === active ? ' aria-current="page"' : '') + '>' +
+      '<span class="nav-ico" style="background-image:url(' + n[3] + ')" aria-hidden="true">' + (n[0] === 'dayori' && unread ? '<i class="nav-badge">' + unread + '</i>' : '') + '</span>' +
+      '<span class="nav-label">' + n[2] + '</span></a>').join('') + '</nav>';
+  }
+  function pageHead(title, lead, extra) {
+    return (DEMO ? '<div class="demo-bar">お試しモード（この端末の中だけに保存）</div>' : '') +
+      '<header class="page-head"><h1>' + esc(title) + (extra || '') + '</h1>' + (lead ? '<p>' + esc(lead) + '</p>' : '') + '</header>';
+  }
+
+  // ---------- ホーム（表紙） ----------
   function renderHome() {
     document.body.className = '';
     const s = data.settings || {};
-    const up = upcomingPlans(); const next = up[0]; const others = up.slice(1);
-    const past = pastPlans();
-    const posts = data.posts || [];
-    const month = todayStr().slice(0, 7);
-    const monthCount = posts.filter(p => ymd(new Date(p.createdAt)).slice(0, 7) === month).length;
+    const next = upcomingPlans()[0];
     let h = (DEMO ? '<div class="demo-bar">お試しモード（この端末の中だけに保存）</div>' : '') + mastHtml();
     h += '<div class="cover"><div class="photo" role="img" aria-label="表紙の写真" style="background-image:url(\'' + esc(photoUrl(s.coverPhoto) || DEFAULT_COVER) + '\')"></div></div>';
     h += '<div class="sheet"><p class="lead">それぞれの日々を、家族の一冊に。</p>' + letterHtml();
@@ -644,34 +683,56 @@
       h += '<div class="notice" role="status"><span class="notice-icon">' + I.bell + '</span><div><p class="k">お知らせ</p><p class="t">' + esc(s.notice) + '</p>' +
         (s.noticeDate ? '<p class="d">' + esc(jpTime(s.noticeDate).replace(/ .*/, '')) + '　幹事より</p>' : '') + '</div></div>';
     }
-    h += '<div class="top-h"><span class="no">01</span><h2>家族の予定</h2></div>';
-    if (up.length) {
-      h += up.map(p => itemHtml(p, 'plan')).join('');
-      if (!others.length) h += '<p class="empty">ほかの予定は、決まりしだいお知らせします。</p>';
+    h += '<h2 class="home-h">次のおでかけ</h2>';
+    if (next) {
+      h += '<a class="next-card" href="#plan/' + encodeURIComponent(next.id) + '"><b>' + esc(next.title) + '</b><span class="d">' + esc(jpRange(next.start, next.end)) + '</span><span class="go">旅のしおりを見る ›</span></a>';
     } else {
       h += '<p class="empty">新しい予定は、決まりしだいお知らせします。</p>';
     }
-    h += '<div class="top-h" id="dayori"><span class="no">02</span><h2>秋田家だより</h2><span class="seal" aria-hidden="true"></span></div>';
-    h += '<p class="sec-lead">それぞれの暮らしから、届いた話。</p>';
+    h += '<div class="organizer"><a href="#admin">' + I.lock + '幹事用</a></div><p class="colophon">何気ない一日も、家族の記録になる。</p>' + creditsHtml() + '</div>';
+    app.innerHTML = '<div class="top-page">' + h + '</div>';
+  }
+
+  // ---------- 予定（家族の予定） ----------
+  function renderPlans() {
+    document.body.className = '';
+    const up = upcomingPlans();
+    let h = pageHead('家族の予定', '次のおでかけを、ここから。') + '<div class="sheet flat">';
+    h += up.length ? up.map(p => itemHtml(p, 'plan')).join('') : '<p class="empty">新しい予定は、決まりしだいお知らせします。</p>';
+    if (up.length === 1) h += '<p class="empty">ほかの予定は、決まりしだいお知らせします。</p>';
+    h += '</div>';
+    app.innerHTML = '<div class="top-page">' + h + '</div>';
+  }
+
+  // ---------- 便り（秋田家だより） ----------
+  function renderDayori() {
+    document.body.className = '';
+    const posts = data.posts || [];
+    const month = todayStr().slice(0, 7);
+    const monthCount = posts.filter(p => ymd(new Date(p.createdAt)).slice(0, 7) === month).length;
     const n = Math.min(monthCount, 9);
+    let h = pageHead('秋田家だより', 'それぞれの暮らしから、届いた話。', '<span class="seal" aria-hidden="true"></span>') + '<div class="sheet flat">';
     h += '<div class="stickers">' + (n ? '<div class="row">' + '<i></i>'.repeat(n) + '</div>' : '<div class="row"><i style="opacity:.35"></i></div>') +
       '<p><b>今月の便り' + (monthCount ? '　' + monthCount + '通' : '') + '</b><br>便りが届くたびに、封蝋がひとつ増えます。</p></div>';
     if (posts.length) {
       h += posts.slice(0, postLimit).map(postHtml).join('');
       if (posts.length > postLimit) h += '<button class="secondary more-btn" data-act="more">もっと見る</button>';
     } else {
-      h += '<p class="empty">最近の出来事を、ひとことから。下の「近況・写真を投稿する」から始められます。</p>';
+      h += '<p class="empty">最近の出来事を、ひとことから。下の「投稿」から始められます。</p>';
     }
-    h += '<div class="top-h"><span class="no">03</span><h2>これまでの記録</h2></div>';
-    if (past.length) {
-      h += past.map(p => itemHtml(p, 'rec')).join('');
-    } else {
-      h += '<div class="memory"><div class="st" aria-hidden="true"></div><p><strong>家族の時間を、記録に。</strong>おでかけの記録や写真が、ここに残ります。</p></div>';
-    }
-    h += '<div class="organizer"><a href="#admin">' + I.lock + '幹事用</a></div><p class="colophon">何気ない一日も、家族の記録になる。</p>' + creditsHtml() + '</div>';
-    h += '<div class="dock"><a class="primary" href="#post">' + I.plus + '<span>近況・写真を投稿する</span></a></div>';
+    h += '</div>';
     app.innerHTML = '<div class="top-page">' + h + '</div>';
-    watchNewPosts();
+  }
+
+  // ---------- 思い出（これまでの記録） ----------
+  function renderMemories() {
+    document.body.className = '';
+    const past = pastPlans();
+    let h = pageHead('これまでの記録', '家族で過ごした時間と、そのときの便り。') + '<div class="sheet flat">';
+    h += past.length ? past.map(p => itemHtml(p, 'rec')).join('') :
+      '<div class="memory"><div class="st" aria-hidden="true"></div><p><strong>家族の時間を、記録に。</strong>おでかけの記録や写真が、ここに残ります。</p></div>';
+    h += '</div>';
+    app.innerHTML = '<div class="top-page">' + h + '</div>';
   }
 
   // ---------- ② 旅のしおり ----------
@@ -681,7 +742,8 @@
     const p = findPlan(id);
     if (!p) { app.innerHTML = '<div class="sub-page">' + subbar('旅のしおり', I.book, '旅のしおり') + '<div class="sub-body"><p class="empty">この予定は見つかりませんでした。</p></div></div>'; return; }
     const img = photoUrl(p.detailImage || p.coverImage);
-    let h = subbar('旅のしおり', I.book, '旅のしおり') + '<div class="sub-body">';
+    const isPast = (p.end || p.start) < todayStr();
+    let h = subbar('旅のしおり', I.book, '旅のしおり', isPast ? '#memories' : '#plans', isPast ? '思い出' : '予定') + '<div class="sub-body">';
     if (img) h += '<div class="sub-photo"><div class="photo" style="background-image:url(\'' + esc(img) + '\')"></div>' + '</div>';
     h += '<h2 class="sub-title">' + esc(p.title) + (p.subtitle ? '<span>' + esc(p.subtitle) + '</span>' : '') + '</h2>';
     h += '<p class="sub-dates">' + esc(jpRange(p.start, p.end, true)) + (p.people ? '・' + esc(p.people) : '') + '</p>';
@@ -760,7 +822,7 @@
   }
   function renderPost() {
     document.body.className = 'sub-bg';
-    let h = subbar('近況を投稿', I.plus, '近況・写真を投稿する') + '<div class="sub-body">';
+    let h = pageHead('近況・写真を投稿する', '今日のこと、ひとことから。') + '<div class="sub-body">';
     if (!me()) {
       h += '<p class="label">あなたは誰ですか？<small>（最初の1回だけ）</small></p>' + whoButtons('pick-me-post') + '<p class="muted" style="font-size:16px;margin-top:8px">このスマホが覚えるので、次からは選ばなくて大丈夫です。</p>';
     } else {
@@ -786,7 +848,7 @@
 
   // ---------- 合言葉（最初の1回） ----------
   function renderGate(msg) {
-    document.body.className = '';
+    document.body.className = 'gate-bg';
     app.innerHTML = '<div class="top-page">' + mastHtml() + '<div class="gate"><div class="box"><p class="label" style="margin-top:0"><label for="gate-key">家族の合言葉</label></p>' +
       '<p class="muted" style="font-size:17px">最初の1回だけ入れてください。このスマホが覚えるので、次からはアイコンを押すだけで開きます。</p>' +
       '<input type="text" id="gate-key" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="ja" style="margin-top:12px" placeholder="ひらがなでも入れられます">' +
@@ -798,7 +860,7 @@
   function renderAdmin() {
     document.body.className = 'sub-bg';
     const pin = ss.get(K_PIN);
-    let h = subbar('幹事用', I.lock, '幹事用') + '<div class="sub-body">';
+    let h = subbar('幹事用', I.lock, '幹事用', '#') + '<div class="sub-body">';
     if (!pin) {
       h += '<p class="label" style="margin-top:4px"><label for="pin">暗証番号（4けた）</label></p><input type="password" id="pin" class="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off">' +
         (DEMO ? '<p class="muted" style="font-size:16px;margin-top:8px">お試しモードの暗証番号は 1234 です。</p>' : '') +
@@ -930,15 +992,20 @@
     const hash = location.hash.replace(/^#\/?/, '');
     if (!DEMO && !ls.get(K_KEY)) { renderGate(); return; }
     if (!data) { app.innerHTML = '<p class="loading">読み込んでいます…</p>'; return; }
-    if (hash.startsWith('plan/')) renderPlan(decodeURIComponent(hash.slice(5)));
-    else if (hash === 'post') renderPost();
+    let tab = '';
+    if (hash.startsWith('plan/')) { const id = decodeURIComponent(hash.slice(5)); renderPlan(id); const p = findPlan(id); tab = p && (p.end || p.start) < todayStr() ? 'memories' : 'plans'; }
+    else if (hash === 'plans') { renderPlans(); tab = 'plans'; }
+    else if (hash === 'dayori') { renderDayori(); tab = 'dayori'; }
+    else if (hash === 'memories') { renderMemories(); tab = 'memories'; }
+    else if (hash === 'post') { renderPost(); tab = 'post'; }
     else if (hash === 'who') renderWho();
     else if (hash.startsWith('admin/plan/')) renderPlanEdit(decodeURIComponent(hash.slice(11)));
     else if (hash === 'admin') renderAdmin();
-    else renderHome();
+    else { renderHome(); tab = 'home'; }
+    app.insertAdjacentHTML('beforeend', navHtml(tab));
+    document.body.classList.add('has-nav');
   }
   window.addEventListener('hashchange', () => {
-    if (!/^#admin\/plan\//.test(location.hash)) planDraft = null;
     render();
     window.scrollTo(0, 0);
   });
@@ -983,7 +1050,7 @@
       else if (act === 'open-item') { const k = el.dataset.key; openIds.add(k); markRead(k); render(); }
       else if (act === 'close-item') { const k = el.dataset.key; openIds.delete(k); render(); const t = app.querySelector('[data-key="' + k + '"]'); if (t) { const b = t.getBoundingClientRect(); if (b.top < 60 || b.bottom > window.innerHeight) t.scrollIntoView({ block: 'center' }); } }
       else if (act === 'close-post') { const id = el.dataset.id; openIds.delete(id); render(); const t = document.getElementById('post-' + id); if (t) { const b = t.getBoundingClientRect(); if (b.top < 60 || b.bottom > window.innerHeight) t.scrollIntoView({ block: 'center' }); } }
-      else if (act === 'to-dayori') { e.preventDefault(); const t = document.getElementById('dayori'); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 12, behavior: 'smooth' }); }
+      else if (act === 'to-dayori') { e.preventDefault(); location.hash = '#dayori'; }
       else if (act === 'seen') {
         if (!me()) { ss.set('akita_who_back', location.hash || '#'); location.hash = '#who'; return; }
         const p = data.posts.find(x => x.id === el.dataset.id); if (!p) return;
@@ -1009,8 +1076,8 @@
         }
         draftPhoto = ''; ss.del('akita_draft_text');
         el.querySelector('span').textContent = '投稿しました';
-        msg.innerHTML = '<div class="done">' + I.check + '投稿しました。表紙にもどります。</div>';
-        setTimeout(() => { location.hash = '#'; refresh(true); }, 1200);
+        msg.innerHTML = '<div class="done">' + I.check + '投稿しました。便りのページにもどります。</div>';
+        setTimeout(() => { location.hash = '#dayori'; refresh(true); }, 1200);
       }
       else if (act === 'gate') {
         const v = (document.getElementById('gate-key').value || '').trim(); if (!v) return;
@@ -1051,6 +1118,7 @@
       }
       else if (act === 'ed-insert') { getPath(planDraft, el.dataset.path).splice(+el.dataset.i + 1, 0, newItem(el.dataset.path)); renderPlanEdit(planDraft._for); }
       else if (act === 'ed-move') { const arr = getPath(planDraft, el.dataset.path), i = +el.dataset.i, j = i + (+el.dataset.dir); if (j < 0 || j >= arr.length) return; const t = arr[i]; arr[i] = arr[j]; arr[j] = t; renderPlanEdit(planDraft._for); }
+      else if (act === 'plan-cancel') { planDraft = null; }
       else if (act === 'ed-del') { getPath(planDraft, el.dataset.path).splice(+el.dataset.i, 1); renderPlanEdit(planDraft._for); }
       else if (act === 'plan-save') {
         const p = JSON.parse(JSON.stringify(planDraft)); const forId = p._for; delete p._for;
